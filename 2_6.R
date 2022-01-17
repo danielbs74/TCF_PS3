@@ -99,11 +99,8 @@ res$`Lender Profit` = ifelse(res$`Project Status` != "Liquidated",
 
 res$`Project Proceeds` = res$`Project Yield` - (res$Investment - A) - res$Withdrawn
 
-histogram(res$Investment, nint = 50, col = 'white', type = 'count')
-histogram(res$`CEO Income`, nint = 50, col = 'white', type = 'count')
-histogram(res$`Effective Shock`, nint = 50, col = 'white', type = 'count')
-histogram(res$`Project Yield`, nint = 50, col = 'white', type = 'count')
 histogram(res$`Project Status`, col = 'white', xlab = 'Project Status')
-histogram(res$`Lender Profit`, nint = 50, col = 'white', type = 'count')
 
-colMeans(res[, -6])
+colMeans(res[, -c(6, 9)])
+
+mean(res$Withdrawn[res$`Project Status` != "Liquidated"])
